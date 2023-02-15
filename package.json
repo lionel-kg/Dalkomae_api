@@ -1,24 +1,26 @@
 {
-  "name": "dalkomae_api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lionel-kg/Dalkomae_api.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lionel-kg/Dalkomae_api/issues"
-  },
-  "homepage": "https://github.com/lionel-kg/Dalkomae_api#readme",
-  "dependencies": {
-    "body-parser": "^1.20.1",
-    "cors": "^2.8.5",
-    "express": "^4.18.2"
-  }
+    "name": "dalkomae_api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "dev": "nodemon src/app.js",
+        "start": "node app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.0",
+        "body-parser": "^1.20.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "express-validator": "^6.14.3",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.8.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    }
 }
