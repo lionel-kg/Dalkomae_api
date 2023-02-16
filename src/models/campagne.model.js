@@ -17,27 +17,6 @@ const campagneSchema = mongoose.Schema({
               required: true
        },
 
-       resource1: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "Ressource"
-       },
-       resource2: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "Ressource"
-       },
-       resource3: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "Ressource"
-       },
-       resource4: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "Ressource"
-       },
-       resource5: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "Ressource"
-       },
-
        target: {
               type: String,
               required: true

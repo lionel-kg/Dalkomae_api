@@ -1,13 +1,8 @@
 const Ressource = require("../models/ressource.model.js");
 
 exports.createRessource = (req, res) => {
-       const newRessource = new Ressource({
-              file: req.body.file,
-              dateFinExploitation: req.body.dateFinExploitation,
-              type: req.body.type,
-              path: req.body.path
-       })
-       newRessource.save().then(
+       req.body.dateFinExploitation = new Date();
+       Ressource.create(req.body).then(
               (ressource) =>
                      res.send(ressource)
        )
@@ -17,6 +12,5 @@ exports.createRessource = (req, res) => {
 exports.getRessource = (req, res) => {
        Ressource.find().then((ressource) => {
               res.send(ressource)
-       })
-              .catch(err => res.status(400).send(err))
+       }).catch(err => res.status(400).send(err))
 }
