@@ -2,29 +2,17 @@ const Campagne = require("../models/campagne.model.js");
 const Ressource = require("../models/ressource.model.js");
 
 exports.createCampagne = (req, res) => {
-       const newCampagne = new Campagne({
-              name: req.body.name,
-              type: req.body.type,
-              date: req.body.date,
-              resource1: req.body.resource1,
-              resource2: req.body.resource2,
-              resource3: req.body.resource3,
-              resource4: req.body.resource4,
-              resource5: req.body.resource5,
-              target: req.body.target
-       })
-       newCampagne.save().then(
-              (campagne) =>
-                     res.send(campagne)
-       )
-              .catch(err => res.status(400).send(err));
+       req.body.date = new Date();
+       Campagne.create(req.body).then((campagne) => {
+              res.send(campagne)
+       }
+       ).catch(err => res.status(400).send(err));
 }
 
 exports.getCampagnes = (req, res) => {
-       Campagne.find().then((campagne) => {
+       Campagne.find().populate("ressources").then((campagne) => {
               res.send(campagne)
-       })
-              .catch(err => res.status(400).send(err))
+       }).catch(err => res.status(400).send(err))
 }
 
 exports.getCampagne = (req, res) => {
@@ -37,3 +25,28 @@ exports.getCampagne = (req, res) => {
        })
               .catch(err => res.status(400).send(err));
 };
+
+exports.getCampagne = (req,res) =>{
+       Campagne.findById({ _id: req.params.id }).populate("ressources").then((campagne) => {
+              res.send(campagne);
+       }).catch(err => res.status(400).send(err));
+}
+
+exports.addRessourceToCampagne = (req,res) => {
+       Ressource.findById({_id: req.body.id}).then((ressource)=>{
+              Campagne.findByIdAndUpdate({_id: req.params.id},{$push: {ressources: ressource}},{new: true})
+              .then((campagne)=>{
+                     res.send(campagne);
+              }).catch((err) => {
+                     res.status(400).send(err);
+              })
+       })
+}
+
+exports.getSearchCampagne = (req, res) => {
+       const name = req.param("name");
+       Campagne.find({name: {$regex: ".*" + name + ".*"}}).populate("ressources").then((campagne) => {
+              res.send(campagne)
+       })
+       .catch(err => res.status(400).send(err))
+}
