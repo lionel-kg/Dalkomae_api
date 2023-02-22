@@ -15,7 +15,7 @@ exports.getCampagnes = (req, res) => {
        }).catch(err => res.status(400).send(err))
 }
 
-exports.getCampagne = (req, res) => {
+/*exports.getCampagne = (req, res) => {
        Campagne.findById({ _id: req.params.id }).then((campagne) => {
               const ids = [campagne.resource1, campagne.resource2, campagne.resource3, campagne.resource4, campagne.resource5];
               Ressource.find({ _id: { $in: ids } }).then((ressource) => {
@@ -24,7 +24,7 @@ exports.getCampagne = (req, res) => {
               });
        })
               .catch(err => res.status(400).send(err));
-};
+};*/
 
 exports.getCampagne = (req,res) =>{
        Campagne.findById({ _id: req.params.id }).populate("ressources").then((campagne) => {

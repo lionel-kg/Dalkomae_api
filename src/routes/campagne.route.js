@@ -6,5 +6,7 @@ router.get('/', campagneController.getCampagnes);
 // router.get('/:id', campagneController.getCampagne);
 router.get('/search', campagneController.getSearchCampagne);
 router.post('/', campagneController.createCampagne);
+router.post("/:id",campagneController.addRessourceToCampagne)
+
 
 module.exports = router;
